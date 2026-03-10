@@ -1,6 +1,6 @@
 main :: IO ()
 
 main = do
-    [a, b] <- map read . words <$> getLine
-    let isOdd = odd (a * b)
-    case isOdd of { True -> putStrLn "Odd"; False -> putStrLn "Even" }
+    nums <- map read . words <$> getLine
+    let result = if odd $ product nums then "Odd" else "Even"
+    putStrLn result
