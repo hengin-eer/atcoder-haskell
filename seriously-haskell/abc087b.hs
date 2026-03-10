@@ -5,5 +5,5 @@ main = do
     b <- readLn
     c <- readLn
     target <- readLn
-    let matchedPairs = [(x, y, z) | x<-[0..a], y<-[0..b], z<-[0..c], (500*x + 100*y + 50*z) == target]
-    print $ length matchedPairs
+    let matchedPairs = [(500*x + 100*y + 50*z) | x<-[0..a], y<-[0..b], z<-[0..c]]
+    print $ length $ filter (== target) matchedPairs
