@@ -1,6 +1,6 @@
 main :: IO ()
 
 main = do
-    [a, b] <- map read . words <$> getLine :: IO [Int]
-    case a*b of n | odd n -> putStrLn "Odd"
-        | otherwise -> putStrLn "Even"
+    [a, b] <- map read . words <$> getLine
+    let isOdd = odd (a * b)
+    case isOdd of { True -> putStrLn "Odd"; False -> putStrLn "Even" }
