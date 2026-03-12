@@ -1,7 +1,9 @@
 main :: IO ()
 
-solve :: Int -> Int -> [Int]
 -- 条件に当てはまるリストを見つける
+solve :: Int -> Int -> [Int]
+solve 0 _ = [-1, -1, -1]
+solve _ 0 = [-1, -1, -1]
 -- NOTE: head とリスト連結で初期値を設定できる by AI
 solve n y = head $
     [[na, nb, nc] | na <- [0..n], nb <- [0..n - na], let nc = (n - na - nb), 1000*na + 5000*nb + 10000*nc == y]
