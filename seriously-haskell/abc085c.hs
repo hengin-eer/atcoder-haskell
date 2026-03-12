@@ -11,4 +11,4 @@ solve n y = head $
 
 main = do
     [n, y] <- map read . words <$> getLine :: IO [Int]
-    print $ solve n y
+    putStrLn $ unwords $ map show $ solve n y
