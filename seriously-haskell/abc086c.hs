@@ -15,14 +15,14 @@ reachable [ti, xi, yi] [tj, xj, yj]
             dy = abs (yj - yi)
             dt = tj - ti
 
-solve :: [[Int]] -> String
-solve [x] = "Yes"
-solve (x:xs)
-    | reachable x $ head xs = solve xs
+solve :: [Int] -> [[Int]] -> String
+solve _ [] = "Yes"
+solve x (y:ys)
+    | reachable x y = solve y ys
     | otherwise = "No"
 
 
 main = do
     n :: Int <- readLn
     list :: [[Int]] <- replicateM n ints
-    putStrLn $ solve list
+    putStrLn $ solve [0, 0, 0] list
