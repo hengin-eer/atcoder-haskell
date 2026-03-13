@@ -2,6 +2,7 @@ main :: IO ()
 
 include :: String -> String -> Bool
 include _ [] = True
+include [] (y:ys) = False
 include (x:xs) (y:ys)
     | x == y = include xs ys
     | otherwise = False
@@ -9,13 +10,12 @@ include (x:xs) (y:ys)
 solve :: String -> String
 solve [] = "YES"
 solve xs
-    | include xs "dream" || include xs "erase" = solve $ drop 5 xs
-    | include xs "eraser" = solve $ drop 6 xs
-    | include xs "dreamer" = solve $ drop 7 xs
+    | include xs "maerd" || include xs "esare" = solve $ drop 5 xs
+    | include xs "reraser" = solve $ drop 6 xs
+    | include xs "remaerd" = solve $ drop 7 xs
     | otherwise = "NO"
 
 
 main = do
     s <- getLine
-    let list = solve s
-    putStrLn list
+    putStrLn $ solve $ reverse s
