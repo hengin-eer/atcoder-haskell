@@ -1,0 +1,26 @@
+cabal-version: 3.0
+name:          abc449
+version:       0.1.0.0
+build-type:    Simple
+
+library
+  -- cabal-fmt: expand .
+  exposed-modules:
+    A
+    B
+    C
+    CDraft
+    D
+    E
+    F
+
+  build-depends:
+    , array
+    , base
+    , bytestring
+    , containers
+    , mtl
+    , vector
+
+  hs-source-dirs:   .
+  default-language: GHC2021

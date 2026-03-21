@@ -1,3 +1,5 @@
+module B where
+
 import Control.Monad (replicateM)
 
 main :: IO ()
