@@ -7,8 +7,8 @@ if [ -z "$1" ]; then
 fi
 
 DIR_PATH=$1
-# パスのスラッシュをハイフンに変換して、Cabalのパッケージ名にする (例: abc/450 -> abc-450)
-PKG_NAME=$(echo "$DIR_PATH" | sed 's/\//-/g')
+# （abc/450 -> abc450 になるようにする）
+PKG_NAME=$(echo "$DIR_PATH" | sed 's/\///g')
 
 # ディレクトリを作成
 mkdir -p "$DIR_PATH"
@@ -21,21 +21,35 @@ version:            0.1.0.0
 build-type:         Simple
 
 library
+    -- cabal-fmt: expand .
+    exposed-modules:
+
     build-depends:    base, vector, bytestring, containers, array, mtl
     hs-source-dirs:   .
     default-language: Haskell2010
 EOF
 
-# a.hs 〜 f.hs のテンプレートを生成
-for problem in a b c d e f; do
+# A.hs 〜 F.hs のテンプレートを生成
+for problem in A B C D E F G; do
     cat <<EOF >"$DIR_PATH/$problem.hs"
+module $problem where
+
+import Data.Maybe (fromJust)
 import qualified Data.Vector as V
 import qualified Data.ByteString.Char8 as BS
 
+readInt :: BS.ByteString -> Int
+readInt = fst . fromJust . BS.readInt
+
 main :: IO ()
 main = do
-    -- ここにコードを書く
-    return ()
+    input <- BS.words <$> BS.getContents
+    let ints = map readInt input
+
+    -- start from here
+    -- let n = head ints
+
+    print ints
 EOF
 done
 
